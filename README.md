@@ -24,3 +24,5 @@ Requirements to the implementation:
 4. Containers and sorting must be implemented using STL (C++ Standard Template Library).
 5. The implementation may use constructs of C++11 or higher.
 6. The code must compile with any compiler of your choice (gcc, Visual C++, etc).
+
+
