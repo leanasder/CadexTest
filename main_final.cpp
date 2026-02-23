@@ -35,16 +35,10 @@ void getNumCurves3D()
     std::cout << '\n';
 }
 
-// function rerurns random number : 0..n
+// function returns random number : 0..n
 int randomN(int n)
 {
-   
-    int x = n + 1;
-    while ( x > n)
-        x = std::rand() % (n + 1);
-        //  x = 1 + std::rand() / ((RAND_MAX + 1u) / 6); 
-
-    return x; 
+    return std::rand() % (n + 1); 
 }
 // populate a vector of pointers to Curves3D
 // solving task # 2
@@ -122,10 +116,7 @@ void printRadius(const std::vector<std::shared_ptr<Curves3D>>& p_v)
 bool lessThan(const std::shared_ptr<Curves3D> sp1,
               const std::shared_ptr<Curves3D> sp2)
 {
-    if(sp1->getRadius() <= sp2->getRadius())
-        return true;
-    else 
-        return false;
+    return sp1->getRadius() <= sp2->getRadius();
 }
 // calculate all radious in container
 double calculateRad(const std::vector<std::shared_ptr<Curves3D>>& p_v)
