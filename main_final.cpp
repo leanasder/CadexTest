@@ -22,8 +22,39 @@ void getParam()
 {
     std::ifstream fin;
     fin.open("input_param.txt");
-    fin >> numCurves3D >> maxParam;
+
+ // File is opened?
+    if (!fin.is_open()) {
+        std::cerr << "Error: Cannot open file input_param.txt" << std::endl;
+        std::cerr << "Using default values: numCurves3D = 20, maxParam = 50" << std::endl;
+        numCurves3D = 20;
+        maxParam = 50;
+        return;
+    }
+
+// Data has readed sussefuly?
+    if (!(fin >> numCurves3D >> maxParam)) {
+        std::cerr << "Error: Invalid data in input_param.txt" << std::endl;
+        std::cerr << "Using default values: numCurves3D = 20, maxParam = 50" << std::endl;
+        numCurves3D = 20;
+        maxParam = 50;
+        fin.close();
+        return;
+    }
+
+    // Are value corrected?
+    if (numCurves3D <= 0 || maxParam <= 0) {
+        std::cerr << "Error: Values must be positive in input_param.txt" << std::endl;
+        std::cerr << "Using default values: numCurves3D = 20, maxParam = 50" << std::endl;
+        numCurves3D = 20;
+        maxParam = 50;
+        fin.close();
+        return;
+    }
+ std::cout << "Successfully read: numCurves3D = " << numCurves3D 
+              << ", maxParam = " << maxParam << std::endl;
     fin.close();
+
 
 }
 
