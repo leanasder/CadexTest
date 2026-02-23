@@ -1,3 +1,4 @@
+#pragma once
 // class returns point with x, y , z coordinates
 class Point3D
 {

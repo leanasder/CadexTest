@@ -1,10 +1,8 @@
 // This program has been done 16.09.2024. 
 // First version of this was in 18.09.2023
 
-#include "dataTypes.cpp"
-#ifndef iostream
+#include "dataTypes.h"
 #include <iostream>
-#endif
 #include <vector>
 #include <cstdlib>
 #include <ctime>
