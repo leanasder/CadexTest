@@ -97,7 +97,7 @@ Ellipse3D::Ellipse3D(double p_x, double p_y, double p_r_a, double p_r_b) :
 
 }
 double Ellipse3D::getRadius()
-{ return 0;}
+{ return (r_a + r_b)/ 2;}
 
 Point3D Ellipse3D::getPoint3D(double t)
 {
@@ -129,7 +129,7 @@ Helix3D::Helix3D(double p_r, double p_step) : r(p_r), step(p_step)
 }
 
 double Helix3D::getRadius()
-{return 0;}
+{return r;}
 
 Point3D Helix3D::getPoint3D(double t)
 {
