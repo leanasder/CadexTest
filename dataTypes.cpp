@@ -1,3 +1,4 @@
+#include <stdexcept>
 #define _USE_MATH_DEFINES
 # include "dataTypes.h"
 # include <iostream>
@@ -45,7 +46,8 @@ void Vector3D::showVector()
 // ctor Circle3D
 Circle3D::Circle3D(double p_x, double p_y, double p_r) : x_c(p_x), y_c(p_y), z(0), r(p_r) 
 {
-
+    if (r <= 0)
+        throw std::invalid_argument("Circle3D: Radius mast be positive");
 }
 // not needs anymore
 /*
@@ -94,7 +96,8 @@ Vector3D Circle3D::getDer1(double t)
 Ellipse3D::Ellipse3D(double p_x, double p_y, double p_r_a, double p_r_b) :
     x_c(p_x), y_c(p_y), z(0), r_a(p_r_a), r_b(p_r_b) 
 {
-
+    if (r_a <= 0 || r_b <= 0)
+        throw std::invalid_argument("Ellipse3D: Radii must be positive");
 }
 double Ellipse3D::getRadius()
 { return (r_a + r_b)/ 2;}
@@ -125,7 +128,8 @@ Vector3D Ellipse3D::getDer1(double t)
 
 Helix3D::Helix3D(double p_r, double p_step) : r(p_r), step(p_step)
 {
-    
+    if (r <= 0)
+        throw std::invalid_argument("Gelix3D: Radius mast be positive");
 }
 
 double Helix3D::getRadius()

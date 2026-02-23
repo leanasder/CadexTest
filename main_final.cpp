@@ -22,7 +22,6 @@ void getParam()
 {
     std::ifstream fin;
     fin.open("input_param.txt");
-
  // File is opened?
     if (!fin.is_open()) {
         std::cerr << "Error: Cannot open file input_param.txt" << std::endl;
@@ -31,7 +30,6 @@ void getParam()
         maxParam = 50;
         return;
     }
-
 // Data has readed sussefuly?
     if (!(fin >> numCurves3D >> maxParam)) {
         std::cerr << "Error: Invalid data in input_param.txt" << std::endl;
@@ -41,8 +39,7 @@ void getParam()
         fin.close();
         return;
     }
-
-    // Are value corrected?
+    // Проверка 3: корректны ли значения (положительные числа)? Are value corrected?
     if (numCurves3D <= 0 || maxParam <= 0) {
         std::cerr << "Error: Values must be positive in input_param.txt" << std::endl;
         std::cerr << "Using default values: numCurves3D = 20, maxParam = 50" << std::endl;
@@ -51,10 +48,8 @@ void getParam()
         fin.close();
         return;
     }
- std::cout << "Successfully read: numCurves3D = " << numCurves3D 
-              << ", maxParam = " << maxParam << std::endl;
-    fin.close();
-
+    //fin >> numCurves3D >> maxParam;
+    //fin.close();
 
 }
 
@@ -69,7 +64,7 @@ void getNumCurves3D()
 // function returns random number : 0..n
 int randomN(int n)
 {
-    return std::rand() % (n + 1); 
+    return 1 + std::rand() % n; 
 }
 // populate a vector of pointers to Curves3D
 // solving task # 2
@@ -80,7 +75,7 @@ std::vector<std::shared_ptr<Curves3D>> populateCon_1()
     srand(std::time(nullptr));
     for (int n=0; n < numCurves3D; ++n) 
     {
-        int x = randomN(2);
+        int x = randomN(2) - 1;
 
         switch (x)
         {
@@ -159,37 +154,43 @@ double calculateRad(const std::vector<std::shared_ptr<Curves3D>>& p_v)
 }
 int main()
 {
-    // getting number of Curves3D and maxParam from file 
-    getParam();
+    try { 
+        // getting number of Curves3D and maxParam from file 
+        getParam();
 
-    // # 1, 2 task. Design classes of curves and populate a container
-    std::vector<std::shared_ptr<Curves3D>> v = populateCon_1();
+        // # 1, 2 task. Design classes of curves and populate a container
+        std::vector<std::shared_ptr<Curves3D>> v = populateCon_1();
 
-    // # 3 task. Print curves3D in a point.
-    printCont(v, M_PI/4);
-    std::cout << "---------------" << std::endl;
-    
-    // #4 task. Populate a second container(vector) of Circle3D
-    std::vector<std::shared_ptr<Curves3D>> v2 = populateCircle3D(v);
+        // # 3 task. Print curves3D in a point.
+        printCont(v, M_PI/4);
+        std::cout << "---------------" << std::endl;
+        
+        // #4 task. Populate a second container(vector) of Circle3D
+        std::vector<std::shared_ptr<Curves3D>> v2 = populateCircle3D(v);
 
-    //Displaying v2 vector
-    printCont(v2, M_PI/4);
-    std::cout << "---------------" << std::endl;
-    
-    //Displaying radious of Circle3D in v2
-    printRadius(v2);
-    std::cout << "---------------" << std::endl;
+        //Displaying v2 vector
+        printCont(v2, M_PI/4);
+        std::cout << "---------------" << std::endl;
+        
+        //Displaying radious of Circle3D in v2
+        printRadius(v2);
+        std::cout << "---------------" << std::endl;
 
-    // solving task #5. Sort vector by radious of Circle3D
-    std::sort(v2.begin(), v2.end(), lessThan);
+        // solving task #5. Sort vector by radious of Circle3D
+        std::sort(v2.begin(), v2.end(), lessThan);
 
-    //Displaying radious of Circle3D in v2 after sorting
-    printRadius(v2);
-    std::cout << "---------------" << std::endl;
+        //Displaying radious of Circle3D in v2 after sorting
+        printRadius(v2);
+        std::cout << "---------------" << std::endl;
 
-    // solving task #6
-    std::cout << " Sum of all radious in v2 = " << calculateRad(v2) << std::endl;
-    std::cout << "---------------" << std::endl;
+        // solving task #6
+        std::cout << " Sum of all radious in v2 = " << calculateRad(v2) << std::endl;
+        std::cout << "---------------" << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
     
     
     return 0;
