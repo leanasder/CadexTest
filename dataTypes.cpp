@@ -1,6 +1,7 @@
+#define _USE_MATH_DEFINES
 # include "dataTypes.h"
 # include <iostream>
-# include <math.h>
+# include <cmath>
 // implementation of classes
 Point3D::Point3D (): x(0), y(0), z(0) {}
 

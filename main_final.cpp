@@ -1,6 +1,8 @@
 // This program has been done 16.09.2024. 
 // First version of this was in 18.09.2023
-
+// 23.02.2026 - fixing any bugs
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include "dataTypes.h"
 #include <iostream>
 #include <vector>
