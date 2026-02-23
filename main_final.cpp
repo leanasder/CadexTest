@@ -75,7 +75,7 @@ std::vector<std::shared_ptr<Curves3D>> populateCon_1()
     srand(std::time(nullptr));
     for (int n=0; n < numCurves3D; ++n) 
     {
-        int x = randomN(2) - 1;
+        int x = randomN(3) - 1;
 
         switch (x)
         {
