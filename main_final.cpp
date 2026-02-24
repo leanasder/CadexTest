@@ -142,7 +142,7 @@ void printRadius(const std::vector<std::shared_ptr<Curves3D>>& p_v)
 bool lessThan(const std::shared_ptr<Curves3D> sp1,
               const std::shared_ptr<Curves3D> sp2)
 {
-    return sp1->getRadius() <= sp2->getRadius();
+    return sp1->getRadius() < sp2->getRadius();
 }
 // calculate all radious in container
 double calculateRad(const std::vector<std::shared_ptr<Curves3D>>& p_v)
